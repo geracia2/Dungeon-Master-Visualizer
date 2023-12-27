@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 
 import GetAllAPIData from "./components/utility/api_services";
 
-import SoundLib from "./components/feature/SoundLib";
-import FabLib from "./components/feature/FabLib";
+import SoundLib from "./components/pages/SoundLib";
+import FabLib from "./components/pages/FabLib";
 import FabSolo from "./components/feature/FabSolo";
 import Home from './components/pages/Home'
 import Nav from "./components/feature/Nav";
