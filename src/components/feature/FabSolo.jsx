@@ -1,19 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 // import jQuery
-import $ from 'jquery';
+import $ from "jquery";
 
 export default function FabSolo() {
-  // looks at current page url and finds the param
+  // looks at current page url and finds the param to display iFrame src
   const { id } = useParams();
 
+  // function to enable a full window view. iFrame doesn't have full window, just a px dimension
   function iframeHeight() {
     var newHeight = $(window).height();
     var newWidth = $(window).width();
     var buffer = 80; // space required for any other elements on the page
     var newIframeHeight = newHeight - buffer;
 
-    $("iframe.fop").css("height", (newIframeHeight*.98)).css("width", (newWidth *.98)); //this will aply to all iframes on the page, so you may want to make your jquery selector more specific.
+    $("iframe.fop")
+      .css("height", newIframeHeight * 0.98)
+      .css("width", newWidth * 0.98); //this will apply to all iFrames on the page, so you may want to make your jquery selector more specific.
   }
 
   // When DOM ready
@@ -49,7 +52,6 @@ export default function FabSolo() {
         execution-while-out-of-viewport="true"
         execution-while-not-rendered="true"
         web-share="true"
-        allow="fullscreen"
         mozallowfullscreen="true"
         webkitallowfullscreen="true"
         accelerometer="true"

@@ -4,6 +4,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 
 export default function FabLib() {
+  // token for SketchFab, but may not need it
   const sfKey = import.meta.env.VITE_KEY_SF;
 
   let [input, setInput] = useState("");
@@ -15,32 +16,48 @@ export default function FabLib() {
     setInput(e.target.value);
   }
 
+  // Preset API requests
   async function handlePreset(param) {
+    const url = `https://api.sketchfab.com/v3/search?q=${param}`;
+    const options = {
+      method: "GET", // GET, POST, PUT, DELETE
+      headers: {
+        // dependant on api
+        Authorization: "Token YOUR_API_KEY",
+      },
+    };
+
     try {
-      const response = await fetch(
-        `https://api.sketchfab.com/v3/search?q=${param}`
-      );
+      const response = await fetch(url);
       const data = await response.json();
       console.log(data);
       // SF data is deeply nested {results:{models:[...]}}
       setSFData(data.results.models);
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
   }
 
+  // Search bar API request
   async function handleSubmit(e) {
     e.preventDefault(); // don't refresh the page with a form submission
+    const url = `https://api.sketchfab.com/v3/search?q=${input}`;
+    const options = {
+      method: "GET", // GET, POST, PUT, DELETE
+      headers: {
+        // dependant on api
+        Authorization: "Token YOUR_API_KEY",
+      },
+    };
+
     try {
-      const response = await fetch(
-        `https://api.sketchfab.com/v3/search?q=${input}`
-      );
+      const response = await fetch(url);
       const data = await response.json();
       console.log(data);
       // SF data is deeply nested {results:{models:[...]}}
       setSFData(data.results.models);
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
   }
 
@@ -73,7 +90,7 @@ export default function FabLib() {
                 <img
                   src={model.thumbnails.images[0].url}
                   alt={model.name}
-                  style={{ maxWidth: "200px" }}
+                  style={{ maxWidth: "200px", minWidth: "200px" }}
                 />
               </Link>
             </div>

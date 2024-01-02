@@ -8,7 +8,9 @@ import FabLib from "./components/pages/FabLib";
 import FabSolo from "./components/feature/FabSolo";
 import Home from './components/pages/Home'
 import Nav from "./components/feature/Nav";
+import Scene from "./components/pages/Scene";
 import Footer from "./components/feature/Footer";
+import About from "./components/pages/About";
 
 export default function App() {
   
@@ -21,6 +23,8 @@ export default function App() {
         <Route path="/fabLib" element={<FabLib />} />
         <Route path="/soundLib" element={<SoundLib />} />
         <Route path="/fabLib/:id" element={<FabSolo />} />
+        <Route path="/scene" element={<Scene />} />
+        <Route path="/about" element={<About />} />
       </Routes>
       {/* <Footer /> */}
     </>
