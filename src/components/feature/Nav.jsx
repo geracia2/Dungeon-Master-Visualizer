@@ -10,6 +10,7 @@ export default function Nav() {
         <Link to={"/"}><Button>Home</Button></Link>
         <Link to={"/fabLib"}><Button>Models</Button></Link>
         <Link to={"/soundLib"}><Button>Sounds</Button></Link>
+        <Link to={"/scene"}><Button>Your Scene</Button></Link>
         <Link to={"/about"}><Button>About</Button></Link>
       </ButtonGroup>
     </div>

@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import sketchFabReducer from './sketchFabSlice'
+
 // import stateReducer from "./stateSlice";
+import sketchFabReducer from './sketchFabSlice'
 
 
 export const store = configureStore({
