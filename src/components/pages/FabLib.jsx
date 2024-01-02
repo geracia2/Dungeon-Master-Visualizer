@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 export default function FabLib() {
   // token for SketchFab, but may not need it
@@ -63,14 +64,19 @@ export default function FabLib() {
 
   return (
     <>
-      <div>SketchFab models</div>
-
-      <ButtonGroup
+     <ButtonGroup
         variant="text"
         color="secondary"
         size="small"
         aria-label="asdf"
       >
+        <Typography
+          style={{ placeContent: "center", padding: "2px" }}
+          variant="button"
+          color="secondary"
+        >
+          Presets -
+        </Typography>
         <Button onClick={() => handlePreset("DragonBorn")}>DragonBorn</Button>
         <Button onClick={() => handlePreset("Elf")}>Elf</Button>
         <Button onClick={() => handlePreset("Gnome")}>Gnome</Button>
