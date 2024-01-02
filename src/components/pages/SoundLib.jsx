@@ -3,6 +3,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 
 export default function SoundLib() {
   // token for FreeSound
@@ -77,15 +78,16 @@ export default function SoundLib() {
 
   return (
     <>
-      <div>SoundLib</div>
       {console.log(FSData)}
 
-      <ButtonGroup
-        variant="text"
-        color="secondary"
-        size="small"
-        aria-label="asdf"
-      >
+      <ButtonGroup variant="text" color="secondary" size="small" aria-label="">
+        <Typography
+          style={{ placeContent: "center", padding: "2px" }}
+          variant="button"
+          color="secondary"
+        >
+          Presets -
+        </Typography>
         <Button onClick={() => handlePreset("Dungeon+atmosphere+rpg")}>
           Dungeon
         </Button>
@@ -111,6 +113,9 @@ export default function SoundLib() {
             <>
               <Typography variant="h6" color="initial">
                 {track.name}
+              <a href={`https://freesound.org/people/${track.username}/sounds/${track.id}/`}>
+              <OpenInNewRoundedIcon aria-label="Link to FreeSond" color="secondary" />
+              </a>
               </Typography>
               <p>{track.description}</p>
               <>
@@ -132,12 +137,9 @@ export default function SoundLib() {
           )}
           {FSData.map((track, i) => (
             <div key={track.id}>
+              
               <p onClick={() => handleTrack(track.id)}>{track.name}</p>
-              <a
-                href={`https://freesound.org/people/${track.username}/sounds/${track.id}/`}
-              >
-                Visit FreeSound Page
-              </a>
+              
             </div>
           ))}
         </div>
