@@ -1,10 +1,14 @@
 import { useState } from "react";
+// mui
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-
+import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
+import { Box } from "@mui/material";
+// mui audio player
+import { AudioCard } from "material-ui-player";
+// components
+import SearchBar from "../feature/SearchBar";
 
 export default function SoundLib() {
   // token for FreeSound
@@ -12,7 +16,9 @@ export default function SoundLib() {
 
   const [FSData, setFSData] = useState(null);
   const [track, setTrack] = useState(null);
-  const [input, setInput] = useState(null);
+  const [input, setInput] = useState("");
+
+  const section = "Music and Sounds";
 
   // Preset API requests
   async function handlePreset(param) {
@@ -22,7 +28,6 @@ export default function SoundLib() {
         Authorization: `Token ${fsKey}`,
       },
     };
-
     try {
       const response = await fetch(url, options);
       const data = await response.json();
@@ -42,7 +47,6 @@ export default function SoundLib() {
         Authorization: `Token ${fsKey}`,
       },
     };
-
     try {
       const response = await fetch(url, options);
       const data = await response.json();
@@ -61,7 +65,6 @@ export default function SoundLib() {
         Authorization: `Token ${fsKey}`,
       },
     };
-
     try {
       const response = await fetch(url, options);
       const data = await response.json();
@@ -79,16 +82,10 @@ export default function SoundLib() {
 
   return (
     <>
-      {console.log(FSData)}
-
-      <ButtonGroup variant="text" color="secondary" size="small" aria-label="">
-        <Typography
-          style={{ placeContent: "center", padding: "2px" }}
-          variant="button"
-          color="secondary"
-        >
-          Presets -
-        </Typography>
+      <Typography variant="h6" color="secondary">
+        PRESETS
+      </Typography>
+      <ButtonGroup color="secondary" size="small" aria-label="">
         <Button onClick={() => handlePreset("Dungeon+atmosphere+rpg")}>
           Dungeon
         </Button>
@@ -96,17 +93,19 @@ export default function SoundLib() {
         <Button
           onClick={() => handlePreset("fantasy+background+music+rpg+loop")}
         >
-          Atmosphere
+          Atmosphere{" "}
         </Button>
         <Button onClick={() => handlePreset("village+music+rpg")}>
           Village
         </Button>
       </ButtonGroup>
 
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={input} onChange={handleChange} />
-        <button>Submit</button>
-      </form>
+      <SearchBar
+        section={section}
+        handleSubmit={handleSubmit}
+        input={input}
+        handleChange={handleChange}
+      />
 
       {FSData && ( // truthy value, checking to see if you have data before rendering
         <div>
@@ -114,9 +113,14 @@ export default function SoundLib() {
             <>
               <Typography variant="h6" color="initial">
                 {track.name}
-              <a href={`https://freesound.org/people/${track.username}/sounds/${track.id}/`}>
-              <OpenInNewRoundedIcon aria-label="Link to FreeSond" color="secondary" />
-              </a>
+                <a
+                  href={`https://freesound.org/people/${track.username}/sounds/${track.id}/`}
+                >
+                  <OpenInNewRoundedIcon
+                    aria-label="Link to FreeSond"
+                    color="secondary"
+                  />
+                </a>
               </Typography>
               <p>{track.description}</p>
               <>
@@ -125,23 +129,26 @@ export default function SoundLib() {
                   <span key={i}>{tag}, </span>
                 ))}
               </>
-              <img src={track.images.waveform_bw_l} alt="" />
-              {console.log(track["previews"]["preview-hq-mp3"])}
-              <audio controls autoplay>
+              <img src={track.images.waveform_bw_l} alt="Waveform" />
+              <audio controls loop>
                 <source
                   src={track["previews"]["preview-hq-mp3"]}
-                  type="audio/ogg"
+                  type="audio/mpeg"
                 />
-                Your browser does not support the audio element.
               </audio>
+              {/* <AudioCard
+                src={track["previews"]["preview-hq-mp3"]}
+                loop="true"
+                thickness="thin"
+                mute="true"
+              /> */}
             </>
           )}
           {FSData.map((track, i) => (
             <div key={track.id}>
               <Button variant="text" color="primary">
-              <p onClick={() => handleTrack(track.id)}>{track.name}</p>
+                <p onClick={() => handleTrack(track.id)}>{track.name}</p>
               </Button>
-              
             </div>
           ))}
         </div>

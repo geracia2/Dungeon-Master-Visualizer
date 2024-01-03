@@ -1,8 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap");
-
-.title {
-  font-family: "Simonetta", serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
 
 iframe {
   border-radius: 20px;

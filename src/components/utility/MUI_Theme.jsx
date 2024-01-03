@@ -1,25 +1,34 @@
-import { ThemeOptions } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
-export const themeOptions: ThemeOptions = {
+const OpenSans = "'Open Sans', sans-serif";
+const Roboto = "'Roboto', sans-serif";
+const Rubik = "'Rubik Mono One', monospace";
+
+
+export const ThemeOptions = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#f6714c',
+      main: '#D97B66',
     },
     secondary: {
-      main: '#4cd1f6',
+      main: '#66c4d9',
     },
     error: {
       main: '#a7bdf9',
     },
+    background: {
+      default: '#014034',
+    },
   },
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: OpenSans,
     h1: {
-      fontFamily: 'Rubik Mono One',
+      fontFamily: Rubik,
     },
     button: {
-      fontFamily: 'Lato',
+      fontFamily: Roboto,
+      fontSize: '1rem',
     },
   },
   shape: {
@@ -68,4 +77,5 @@ export const themeOptions: ThemeOptions = {
       arrow: true,
     },
   },
-};
+  spacing: 3,
+});
