@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.2",
     "@reduxjs/toolkit": "^2.0.1",
     "jquery": "^3.7.1",
+    "material-ui-player": "^1.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.0.4",
