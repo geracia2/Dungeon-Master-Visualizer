@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 
+
 export default function SoundLib() {
   // token for FreeSound
   const fsKey = import.meta.env.VITE_KEY_FS;
@@ -137,8 +138,9 @@ export default function SoundLib() {
           )}
           {FSData.map((track, i) => (
             <div key={track.id}>
-              
+              <Button variant="text" color="primary">
               <p onClick={() => handleTrack(track.id)}>{track.name}</p>
+              </Button>
               
             </div>
           ))}
