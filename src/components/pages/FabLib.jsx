@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+// mui
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Box } from '@mui/material';
+// components
+import SearchBar from "../feature/SearchBar";
+
+
 
 export default function FabLib() {
   // token for SketchFab, but may not need it
   const sfKey = import.meta.env.VITE_KEY_SF;
 
   let [input, setInput] = useState("");
-  // !! move sketchfab data to Redux store
   let [sfData, setSFData] = useState(null);
+
+  const section = 'Models and Environments'
 
   // update the text input
   function handleChange(e) {
@@ -63,30 +70,27 @@ export default function FabLib() {
   }
 
   return (
-    <>
+    <Box>
+        <Typography
+          variant="h6"
+          color="secondary"
+        >
+          PRESETS
+        </Typography>
+
+      
      <ButtonGroup
-        variant="text"
         color="secondary"
         size="small"
         aria-label="asdf"
       >
-        <Typography
-          style={{ placeContent: "center", padding: "2px" }}
-          variant="button"
-          color="secondary"
-        >
-          Presets -
-        </Typography>
         <Button onClick={() => handlePreset("DragonBorn")}>DragonBorn</Button>
         <Button onClick={() => handlePreset("Elf")}>Elf</Button>
         <Button onClick={() => handlePreset("Gnome")}>Gnome</Button>
         <Button onClick={() => handlePreset("Goblin")}>Goblin</Button>
       </ButtonGroup>
 
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={input} onChange={handleChange} />
-        <button>Submit</button>
-      </form>
+      <SearchBar section={section} handleSubmit={handleSubmit} input={input} handleChange={handleChange} />
 
       {sfData && ( // truthy value, checking to see if you have data before rendering
         <div>
@@ -103,6 +107,6 @@ export default function FabLib() {
           ))}
         </div>
       )}
-    </>
+    </Box>
   );
 }
