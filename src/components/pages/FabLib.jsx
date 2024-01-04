@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 // components
 import SearchBar from "../feature/SearchBar";
-
-
+import ModelPresets from "../feature/ModelPresets";
+import ModelList from "../feature/ModelList";
 
 export default function FabLib() {
   // token for SketchFab, but may not need it
@@ -17,7 +17,7 @@ export default function FabLib() {
   let [input, setInput] = useState("");
   let [sfData, setSFData] = useState(null);
 
-  const section = 'Models and Environments'
+  const section = "Models and Environments";
 
   // update the text input
   function handleChange(e) {
@@ -70,43 +70,15 @@ export default function FabLib() {
   }
 
   return (
-    <Box>
-        <Typography
-          variant="h6"
-          color="secondary"
-        >
-          PRESETS
-        </Typography>
-
-      
-     <ButtonGroup
-        color="secondary"
-        size="small"
-        aria-label="asdf"
-      >
-        <Button onClick={() => handlePreset("DragonBorn")}>DragonBorn</Button>
-        <Button onClick={() => handlePreset("Elf")}>Elf</Button>
-        <Button onClick={() => handlePreset("Gnome")}>Gnome</Button>
-        <Button onClick={() => handlePreset("Goblin")}>Goblin</Button>
-      </ButtonGroup>
-
-      <SearchBar section={section} handleSubmit={handleSubmit} input={input} handleChange={handleChange} />
-
-      {sfData && ( // truthy value, checking to see if you have data before rendering
-        <div>
-          {sfData.map((model, i) => (
-            <div key={model.uid}>
-              <Link to={`/fabLib/${model.uid}`}>
-                <img
-                  src={model.thumbnails.images[0].url}
-                  alt={model.name}
-                  style={{ maxWidth: "200px", minWidth: "200px" }}
-                />
-              </Link>
-            </div>
-          ))}
-        </div>
-      )}
-    </Box>
+    <>
+      <SearchBar
+        section={section}
+        handleSubmit={handleSubmit}
+        input={input}
+        handleChange={(e) => setInput(e.target.value)}
+      />
+      <ModelPresets handlePreset={handlePreset} />
+      <ModelList sfData={sfData} />
+    </>
   );
 }

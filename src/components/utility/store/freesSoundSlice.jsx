@@ -3,16 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 //
 // const [state, setState] = useState(initial)
 
-const freeSoundSlice = createSlice({
-  name: "freeSoundData",
+const FreeSoundTrackSlice = createSlice({
+  name: "FreeSoundTracks",
   initialState: null,
   reducers: {
-    freeSoundData: (state, action) => {
-      // payload is the added argument coming back from a dispatch
-      state = action.payload;
-      return state;
+    Add_Track: (state, action) => {
+      let item = {
+        text: action.payload,
+        id: crypto.randomUUID() 
+      };
+      return state = [...state, item];
     },
-    freeSoundData: (state, action) => {
+    Remove_Track: (state, action) => {
       // payload is the added argument coming back from a dispatch
       state = action.payload;
       return state;
@@ -21,8 +23,8 @@ const freeSoundSlice = createSlice({
 });
 
 // final export of reducer, this also holds the state
-export default freeSoundSlice.reducer;
+export default FreeSoundTrackSlice.reducer;
 
 // named export of reducers, add more actions here too
 // the actions object comes from reducer
-export const { setFreeSoundData } = freeSoundSlice.actions;
+export const { Remove_Track, Add_Track } = FreeSoundTrackSlice.actions;
