@@ -1,22 +1,16 @@
-// mui
-import { Box } from "@mui/material";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
-// mui audio player
-import { AudioCard } from "material-ui-player";
-// components
+import { useState } from "react";
+//components
 import SearchBar from "../feature/SearchBar";
 import SoundPresets from "../feature/SoundPresets";
-import { useState } from "react";
 import SoundList from "../feature/SoundList";
 import SoundTrack from "../feature/SoundTrack";
+
+
 
 export default function SoundLib() {
   // token for FreeSound
   const fsKey = import.meta.env.VITE_KEY_FS;
-
+  
   const [fsListData, setFSListData] = useState(null);
   const [fsTrack, setFSTrack] = useState(null);
   const [input, setInput] = useState("");
@@ -34,7 +28,6 @@ export default function SoundLib() {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(data);
       setFSListData(data.results);
     } catch (error) {
       console.warn(error);
@@ -72,8 +65,7 @@ export default function SoundLib() {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(data);
-      // dispatch here
+      // console.log(data);
       setFSTrack(data);
     } catch (error) {
       console.warn(error);
