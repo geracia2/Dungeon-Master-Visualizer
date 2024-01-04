@@ -1,11 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-// mui
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
-// components
 import SearchBar from "../feature/SearchBar";
 import ModelPresets from "../feature/ModelPresets";
 import ModelList from "../feature/ModelList";
@@ -34,7 +27,6 @@ export default function FabLib() {
         Authorization: "Token YOUR_API_KEY",
       },
     };
-
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -57,7 +49,6 @@ export default function FabLib() {
         Authorization: "Token YOUR_API_KEY",
       },
     };
-
     try {
       const response = await fetch(url);
       const data = await response.json();

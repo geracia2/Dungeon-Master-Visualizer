@@ -5,19 +5,22 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const FreeSoundTrackSlice = createSlice({
   name: "FreeSoundTracks",
-  initialState: null,
+  initialState: [],
   reducers: {
     Add_Track: (state, action) => {
-      let item = {
-        text: action.payload,
-        id: crypto.randomUUID() 
-      };
-      return state = [...state, item];
+      let item = action.payload;
+      // spread when working with arrays to begin.
+      // return [...state, item];
+      // push is better for this instance
+      console.log(action.payload);
+      state.push(item);
     },
     Remove_Track: (state, action) => {
       // payload is the added argument coming back from a dispatch
-      state = action.payload;
-      return state;
+      let deleteTrack = state.filter((item) => item.id !== action.payload);
+      console.log('delete')
+      console.log(deleteTrack)
+      return deleteTrack;
     },
   },
 });
@@ -27,4 +30,5 @@ export default FreeSoundTrackSlice.reducer;
 
 // named export of reducers, add more actions here too
 // the actions object comes from reducer
-export const { Remove_Track, Add_Track } = FreeSoundTrackSlice.actions;
+export const { Set_Track, Remove_Track, Add_Track } =
+  FreeSoundTrackSlice.actions;
