@@ -13,13 +13,11 @@ const FreeSoundTrackSlice = createSlice({
       // return [...state, item];
       // push is better for this instance
       console.log(action.payload);
+
       state.push(item);
     },
     Remove_Track: (state, action) => {
-      // payload is the added argument coming back from a dispatch
       let deleteTrack = state.filter((item) => item.id !== action.payload);
-      console.log('delete')
-      console.log(deleteTrack)
       return deleteTrack;
     },
   },
@@ -30,5 +28,8 @@ export default FreeSoundTrackSlice.reducer;
 
 // named export of reducers, add more actions here too
 // the actions object comes from reducer
-export const { Set_Track, Remove_Track, Add_Track } =
-  FreeSoundTrackSlice.actions;
+export const { 
+  Set_Track, 
+  Remove_Track, 
+  Add_Track 
+} = FreeSoundTrackSlice.actions;

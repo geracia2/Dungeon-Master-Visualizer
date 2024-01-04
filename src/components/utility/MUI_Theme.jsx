@@ -18,7 +18,7 @@ export const ThemeOptions = createTheme({
       main: '#a7bdf9',
     },
     background: {
-      default: '#014034',
+      default: '#2E465C',
     },
   },
   typography: {
