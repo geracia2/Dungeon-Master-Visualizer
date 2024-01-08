@@ -1,178 +1,164 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Set_Model,
+  Remove_Model,
+  Add_Model,
+} from "../utility/store/sketchFabSlice";
 import { Link } from "react-router-dom";
 //mui
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  Chip,
+  Stack,
+} from "@mui/material";
 
-//modal style
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function ModelList({ sfData }) {
+  //modal style
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "70vw",
+    height: "80vh",
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
   // modal vars
+  const [modalInfo, setModalInfo] = useState({});
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  // enable dispatch, connect redux state
+  const dispatch = useDispatch();
+  const sfModel = useSelector((state) => state.SketchFabModels);
+  console.log(sfModel);
+
+  const handleSet = (model) => {
+    dispatch(Set_Model(model));
+  };
+
+  // const handleAdd = (model) => {
+  //   dispatch(Add_Model(model));
+  // };
+
+  const handleDelete = (model) => {
+    dispatch(Remove_Model());
+    console.info(sfModel);
+  };
+
+  //modal interactions
+  const handleModalSelect = (uid, name) => {
+    handleOpen();
+    setModalInfo({
+      name: name,
+      uid: uid,
+    });
+    console.log(uid, name);
+  };
+
   return (
     <>
       {sfData && ( // truthy value, checking to see if you have data before rendering
-        <div>
-          {sfData.map((model, i) => (
-            <div key={model.uid}>
-              {/* <Link to={`/fabLib/${model.uid}`}>
-                <img
-                  src={model.thumbnails.images[0].url}
-                  alt={model.name}
-                  style={{ maxWidth: "200px", minWidth: "200px" }}
-                />
-              </Link> */}
-              <Button onClick={handleOpen}>
-                <img
-                  src={model.thumbnails.images[0].url}
-                  alt={model.name}
-                  style={{ maxWidth: "200px", minWidth: "200px" }}
-                />
-              </Button>
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                  >
-                    {/* title */}
-                  </Typography>
-                  <iframe
-                    src={`https://sketchfab.com/models/${model.uid}/embed`}
-                    id="api-frame"
-                    allow="autoplay; fullscreen; xr-spatial-tracking"
-                    xr-spatial-tracking="true"
-                    execution-while-out-of-viewport="true"
-                    execution-while-not-rendered="true"
-                    web-share="true"
-                    mozallowfullscreen="true"
-                    webkitallowfullscreen="true"
-                    accelerometer="true"
-                    // resize stuff:
-                    width="100%"
-                    height="100%"
-                    class="fop"
-                    frameBorder="0"
+        <>
+          <Box sx={{ p: 5, display: "flex", justifyContent: "center" }}>
+            <ImageList>
+              {sfData.models.map((model, i) => (
+                <ImageListItem key={model.uid}>
+                  <img
+                    src={model.thumbnails.images[0].url}
+                    alt={model.name}
+                    loading="lazy"
+                    style={{
+                      maxWidth: "600px",
+                      minWidth: "100px",
+                      // width: "260px",
+                    }}
+                    onClick={() => handleModalSelect(model.uid, model.name)}
                   />
-                </Box>
-              </Modal>
-            </div>
-          ))}
-        </div>
+                  <ImageListItemBar
+                    title={model.name}
+                    subtitle={<span>by: {model.user.username}</span>}
+                    position="bottom"
+                    sx={{
+                      backgroundColor: "background.paper",
+                      paddingLeft: "10px",
+                    }}
+                    actionIcon={
+                      <Stack
+                        direction="column"
+                        spacing={1}
+                        sx={{
+                          position: "relative",
+                          right: "10px",
+                        }}
+                      >
+                        <Chip
+                          label="Add to Scene"
+                          onClick={() => handleSet(model)}
+                          icon={<AddIcon />}
+                        />
+                        <Chip
+                          label="Remove From Scene"
+                          onClick={() => handleDelete(model)}
+                          icon={<DeleteIcon />}
+                          variant="outlined"
+                        />
+                      </Stack>
+                    }
+                    actionPosition="right"
+                  />
+                </ImageListItem>
+              ))}
+            </ImageList>
+            {/* ----- Modal ------ */}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  {modalInfo.name}
+                </Typography>
+                <iframe
+                  src={`https://sketchfab.com/models/${modalInfo.uid}/embed`}
+                  id="api-frame"
+                  allow="autoplay; fullscreen; xr-spatial-tracking"
+                  xr-spatial-tracking="true"
+                  execution-while-out-of-viewport="true"
+                  execution-while-not-rendered="true"
+                  web-share="true"
+                  mozallowfullscreen="true"
+                  webkitallowfullscreen="true"
+                  accelerometer="true"
+                  // resize stuff:
+                  width="100%"
+                  height="95%"
+                  // class="fop"
+                  frameBorder="0"
+                />
+              </Box>
+            </Modal>
+            {/* ----- Modal ------ */}
+          </Box>
+        </>
       )}
     </>
   );
 }
-
-/*
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-
-export default function TitlebarBelowImageList() {
-  return (
-    <ImageList sx={{ width: 500, height: 450 }}>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <ImageListItemBar
-            title={item.title}
-            subtitle={<span>by: {item.author}</span>}
-            position="below"
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
-  );
-}
-
-const itemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    title: 'Breakfast',
-    author: '@bkristastucchio',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-    title: 'Burger',
-    author: '@rollelflex_graphy726',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-    title: 'Camera',
-    author: '@helloimnik',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-    title: 'Coffee',
-    author: '@nolanissac',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-    title: 'Hats',
-    author: '@hjrc33',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-    title: 'Honey',
-    author: '@arwinneil',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball',
-    author: '@tjdragotta',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern',
-    author: '@katie_wasserman',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms',
-    author: '@silverdalex',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil',
-    author: '@shelleypauls',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'Sea star',
-    author: '@peterlaster',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-    title: 'Bike',
-    author: '@southside_customs',
-  },
-];
-*/

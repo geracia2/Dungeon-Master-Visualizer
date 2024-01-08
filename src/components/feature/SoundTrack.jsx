@@ -17,6 +17,7 @@ export default function SoundTrack({ fsTrack }) {
   // enable dispatch, connect redux state
   const dispatch = useDispatch();
   const soundTrack = useSelector((state) => state.FreeSoundTracks);
+  console.log(soundTrack);
 
   //mui interactions
   const handleAdd = () => {
