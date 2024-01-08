@@ -42,6 +42,8 @@ export default function TopAppBar() {
     setAnchorElUser(null);
   };
 
+  const sfModel = useSelector((state) => state.SketchFabModels);
+
   return (
     <AppBar position="sticky"sx={{ background: 'linear-gradient(138deg, rgba(242,246,253,1) 29%, rgba(102,196,217,1) 100%)'}} >
       <Container maxWidth="false">
@@ -79,7 +81,7 @@ export default function TopAppBar() {
               }}
             >
               <Link style={{textDecoration: 'none' }} to={"/"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Home</Typography></Link>
-              <Link style={{textDecoration: 'none' }} to={"/fabLib"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Models</Typography></Link>
+              <Badge badgeContent={'1'} color="secondary"><Link style={{textDecoration: 'none' }} to={"/fabLib"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Models</Typography></Link></Badge>
               <Link style={{textDecoration: 'none' }} to={"/soundLib"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Sounds</Typography></Link>
               <Link style={{textDecoration: 'none' }} to={"/scene"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Your Scene</Typography></Link>
               <Link style={{textDecoration: 'none' }} to={"/about"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>About</Typography></Link>

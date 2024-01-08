@@ -10,6 +10,7 @@ import FabLib from "./components/pages/FabLib";
 import Home from "./components/pages/Home";
 import Scene from "./components/pages/Scene";
 import About from "./components/pages/About";
+import Nav from "./components/feature/Nav";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         maxWidth="false"
       >
         <TopAppBar />
+        <Nav></Nav>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fabLib" element={<FabLib />} />

@@ -3,6 +3,7 @@ import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { Grid } from "@mui/material";
+import { useSelector } from 'react-redux';
 
 export default function CustomizedInputBase({
   section,
@@ -10,8 +11,13 @@ export default function CustomizedInputBase({
   input,
   handleChange,
 }) {
+
+  const sfModel = useSelector((state) => state.SketchFabModels);
+  console.log(sfModel);
+
   return (
     <>
+    <p>{sfModel.name}</p>
       <Box sx={{ p: 5, display: "flex", justifyContent: "center" }}>
         <Paper
           component="form"
