@@ -4,15 +4,15 @@ import { createSlice } from "@reduxjs/toolkit";
 // get from local, if it is not null
 // if it is not null, stringify it
 // if null, return an empty array
-// const storedModel =
-//   localStorage.getItem("localModel") != null
-//     ? JSON.parse(localStorage.getItem("localModel"))
-//     : [];
-const storedModel = JSON.parse(localStorage.getItem("storedModel"))
+const storedModel =
+  localStorage.getItem("storedModel") != null
+    ? JSON.parse(localStorage.getItem("storedModel"))
+    : null;
+// const storedModel = JSON.parse(localStorage.getItem("storedModel"))
 
 // const initialState = [];
 const initialState = storedModel;
-
+console.log(storedModel);
 const SketchFabModelsSlice = createSlice({
   name: "SketchFabModels",
   // set initState to local state
@@ -20,14 +20,14 @@ const SketchFabModelsSlice = createSlice({
   reducers: {
     Set_Model: (state, action) => {
       console.info("You clicked Set.");
-      console.log(action.payload);
+      // console.log(action.payload);
       state = action.payload;
 
       // to set local model we do the above expression
       // the resulting state gets stored in a key of "storedModel"
       // and state should be updated as "storedModel"
       localStorage.setItem("storedModel", JSON.stringify(action.payload));
-
+      console.log(storedModel);
       // when manipulating state with expressions
       // or outside of a mutating method like .push()
       // you need to return state
@@ -39,7 +39,7 @@ const SketchFabModelsSlice = createSlice({
       // spread when working with arrays to begin.
       // return [...state, item];
       // push is better for this instance
-      console.log(action.payload);
+      // console.log(action.payload);
 
       state.push(item);
     },
@@ -48,9 +48,9 @@ const SketchFabModelsSlice = createSlice({
       // let deleteModel = state.filter((item) => item.id !== action.payload);
       // return deleteModel;
       console.info("You clicked Delete.");
-      state = [];
+      state = null;
       localStorage.setItem("storedModel", JSON.stringify(state));
-
+      console.log(storedModel);
       return state;
     },
   },

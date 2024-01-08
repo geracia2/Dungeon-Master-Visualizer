@@ -12,12 +12,9 @@ export default function CustomizedInputBase({
   handleChange,
 }) {
 
-  const sfModel = useSelector((state) => state.SketchFabModels);
-  console.log(sfModel);
 
   return (
     <>
-    <p>{sfModel.name}</p>
       <Box sx={{ p: 5, display: "flex", justifyContent: "center" }}>
         <Paper
           component="form"
