@@ -21,8 +21,8 @@ export default function Nav() {
           aria-label="nav"
         >
         <Link to={"/"}><Button>Home</Button></Link>
-        <Link to={"/fabLib"}><Button>Models</Button></Link>
-        <Link to={"/soundLib"}><Badge badgeContent={sfModel.name} color="secondary"><Typography variant="body1" color="initial">Sounds</Typography></Badge></Link>
+        <Link to={"/fabLib"}><Badge badgeContent={sfModel.name} color="secondary"><Button>Models</Button></Badge></Link>
+        <Link to={"/soundLib"}><Badge badgeContent={soundTrack.length} color="secondary"><Typography variant="body1" color="initial">Sounds</Typography></Badge></Link>
         <Link to={"/scene"}><Button>Your Scene</Button></Link>
         <Link to={"/about"}><Button>About</Button></Link>
         </ButtonGroup>

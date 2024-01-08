@@ -22,6 +22,7 @@ import { useSelector } from "react-redux";
 
 export default function TopAppBar() {
   const soundTrack = useSelector((state) => state.FreeSoundTracks);
+  const sfModel = useSelector((state) => state.SketchFabModels);
   
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -42,7 +43,6 @@ export default function TopAppBar() {
     setAnchorElUser(null);
   };
 
-  const sfModel = useSelector((state) => state.SketchFabModels);
 
   return (
     <AppBar position="sticky"sx={{ background: 'linear-gradient(138deg, rgba(242,246,253,1) 29%, rgba(102,196,217,1) 100%)'}} >
@@ -81,8 +81,8 @@ export default function TopAppBar() {
               }}
             >
               <Link style={{textDecoration: 'none' }} to={"/"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Home</Typography></Link>
-              <Badge badgeContent={'1'} color="secondary"><Link style={{textDecoration: 'none' }} to={"/fabLib"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Models</Typography></Link></Badge>
-              <Link style={{textDecoration: 'none' }} to={"/soundLib"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Sounds</Typography></Link>
+              <Link style={{textDecoration: 'none' }} to={"/fabLib"}><Badge badgeContent={sfModel && ''} color="secondary"><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Models</Typography></Badge></Link>
+              <Link style={{textDecoration: 'none' }} to={"/soundLib"}><Badge badgeContent={soundTrack.length} color="secondary"><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Sounds</Typography></Badge></Link>
               <Link style={{textDecoration: 'none' }} to={"/scene"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>Your Scene</Typography></Link>
               <Link style={{textDecoration: 'none' }} to={"/about"}><Typography sx={{ color: "primary.main", px: 6, py: 2 }}>About</Typography></Link>
             </Menu>
@@ -111,8 +111,8 @@ export default function TopAppBar() {
               }}
             />
               <Link style={{textDecoration: 'none' }} to={"/"}><Button sx={{ color: "primary.main", py: 8, px: 5, display:'block' }}>Home</Button></Link>
-              <Link style={{textDecoration: 'none' }} to={"/fabLib"}><Button sx={{ color: "primary.main", py: 8, px: 5, display:'block' }}>Models</Button></Link>
-              <Link style={{textDecoration: 'none' }} to={"/soundLib"}><Button sx={{ color: "primary.main", py: 8, px: 5, display:'block' }}>Sounds</Button></Link>
+              <Link style={{textDecoration: 'none' }} to={"/fabLib"}><Badge badgeContent={sfModel && ''} color="secondary"><Button sx={{ color: "primary.main", py: 8, px: 5, display:'block' }}>Models</Button></Badge></Link>
+              <Link style={{textDecoration: 'none' }} to={"/soundLib"}><Badge badgeContent={soundTrack.length} color="secondary"><Button sx={{ color: "primary.main", py: 8, px: 5, display:'block' }}>Sounds</Button></Badge></Link>
               <Link style={{textDecoration: 'none' }} to={"/scene"}><Button sx={{ color: "primary.main", py: 8, px: 5, display:'block' }}>Scene</Button></Link>
               <Link style={{textDecoration: 'none' }} to={"/about"}><Button sx={{ color: "primary.main", py: 8, px: 5, display:'block' }}>About</Button></Link>
           </Box>

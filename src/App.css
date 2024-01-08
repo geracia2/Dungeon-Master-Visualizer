@@ -7,3 +7,7 @@
 iframe {
   border-radius: 20px;
 }
+
+audio::-webkit-media-controls-panel {
+  background-color: #afafaf;
+}

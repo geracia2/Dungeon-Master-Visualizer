@@ -1,35 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const storedSound = JSON.parse(localStorage.getItem("localSound"));
+const storedSound =
+  localStorage.getItem("storedSound") != null
+    ? JSON.parse(localStorage.getItem("storedSound"))
+    : [];
 
+    
+const initialState = storedSound;
 
 const FreeSoundTrackSlice = createSlice({
   name: "FreeSoundTracks",
-  initialState: [],
+  initialState,
   reducers: {
     Add_Track: (state, action) => {
-      let item = action.payload;
-      // spread when working with arrays to begin.
-      // return [...state, item];
-      // push is better for this instance
       console.log(action.payload);
-
+      // state === null ? state = [] : null
+      let item = action.payload;
       state.push(item);
+      localStorage.setItem("storedSound", JSON.stringify(state));
     },
+
     Remove_Track: (state, action) => {
       let deleteTrack = state.filter((item) => item.id !== action.payload);
+      localStorage.setItem("storedSound", JSON.stringify(state));
       return deleteTrack;
     },
   },
 });
 
-// final export of reducer, this also holds the state
 export default FreeSoundTrackSlice.reducer;
 
-// named export of reducers, add more actions here too
-// the actions object comes from reducer
-export const { 
-  Set_Track, 
-  Add_Track, 
-  Remove_Track, 
-} = FreeSoundTrackSlice.actions;
+export const { Set_Track, Add_Track, Remove_Track } =
+  FreeSoundTrackSlice.actions;

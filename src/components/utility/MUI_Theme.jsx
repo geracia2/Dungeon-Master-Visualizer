@@ -16,8 +16,8 @@ export const ThemeOptions = createTheme({
       main: "#ce93d8",
     },
     background: {
-      default: "#121212",
-      paper: "#121212",
+      default: "#282c34",
+      paper: "#1e1e1e",
     },
   },
   typography: {
