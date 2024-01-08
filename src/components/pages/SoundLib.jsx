@@ -4,13 +4,12 @@ import SearchBar from "../feature/SearchBar";
 import SoundPresets from "../feature/SoundPresets";
 import SoundList from "../feature/SoundList";
 import SoundTrack from "../feature/SoundTrack";
-
-
+import Typography from '@mui/material/Typography'
 
 export default function SoundLib() {
   // token for FreeSound
   const fsKey = import.meta.env.VITE_KEY_FS;
-  
+
   const [fsListData, setFSListData] = useState(null);
   const [fsTrack, setFSTrack] = useState(null);
   const [input, setInput] = useState("");
@@ -74,6 +73,10 @@ export default function SoundLib() {
 
   return (
     <>
+      <Typography variant="h4" align="center" color="secondary" sx={{ p: 8 }}>
+        Search for music or sounds and add them to your scene.
+      </Typography>
+
       <SearchBar
         section={section}
         handleSubmit={handleSubmit}

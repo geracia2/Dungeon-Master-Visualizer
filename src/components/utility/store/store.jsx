@@ -1,14 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // import stateReducer from "./stateSlice";
-import sketchFabReducer from './sketchFabSlice'
 import FreeSoundTracksReducer from './freesSoundSlice'
-
+import SketchFabModelsReducer from "./sketchFabSlice";
 
 export const store = configureStore({
     reducer: {
         // state: stateReducer,
-        sketchFabData: sketchFabReducer,
+        SketchFabModels: SketchFabModelsReducer,
         FreeSoundTracks: FreeSoundTracksReducer,
         // ... other state operations,
     }

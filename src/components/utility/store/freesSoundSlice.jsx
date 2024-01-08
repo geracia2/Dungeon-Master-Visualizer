@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//
-// const [state, setState] = useState(initial)
-
 const FreeSoundTrackSlice = createSlice({
   name: "FreeSoundTracks",
   initialState: [],
@@ -30,6 +27,6 @@ export default FreeSoundTrackSlice.reducer;
 // the actions object comes from reducer
 export const { 
   Set_Track, 
+  Add_Track, 
   Remove_Track, 
-  Add_Track 
 } = FreeSoundTrackSlice.actions;

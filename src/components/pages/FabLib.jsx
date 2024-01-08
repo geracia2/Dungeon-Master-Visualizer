@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchBar from "../feature/SearchBar";
 import ModelPresets from "../feature/ModelPresets";
 import ModelList from "../feature/ModelList";
+import Typography from '@mui/material/Typography'
 
 export default function FabLib() {
   // token for SketchFab, but may not need it
@@ -32,7 +33,7 @@ export default function FabLib() {
       const data = await response.json();
       console.log(data);
       // SF data is deeply nested {results:{models:[...]}}
-      setSFData(data.results.models);
+      setSFData(data.results);
     } catch (error) {
       console.warn(error);
     }
@@ -41,7 +42,7 @@ export default function FabLib() {
   // Search bar API request
   async function handleSubmit(e) {
     e.preventDefault(); // don't refresh the page with a form submission
-    const url = `https://api.sketchfab.com/v3/search?q=${input}`;
+    const url = `https://api.sketchfab.com/v3/search?q=${input}&restricted=false`;
     const options = {
       method: "GET", // GET, POST, PUT, DELETE
       headers: {
@@ -54,7 +55,7 @@ export default function FabLib() {
       const data = await response.json();
       console.log(data);
       // SF data is deeply nested {results:{models:[...]}}
-      setSFData(data.results.models);
+      setSFData(data.results);
     } catch (error) {
       console.warn(error);
     }
@@ -62,6 +63,7 @@ export default function FabLib() {
 
   return (
     <>
+    <Typography variant="h4" align="center" color="secondary"sx={{p:8}}>Search for models and add them to your scene.</Typography>
       <SearchBar
         section={section}
         handleSubmit={handleSubmit}
