@@ -2,6 +2,8 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SoundMuiCard from "./../feature/SoundMuiCard";
+// reducers
+import { Set_Model, Remove_Model, Add_Model, } from "../utility/store/sketchFabSlice";
 
 export default function Scene() {
   const dispatch = useDispatch();
@@ -17,7 +19,7 @@ export default function Scene() {
     display: "flex",
     justifyContent: "center",
     alignItems: "flex-start;",
-    flexDirection:'column',
+    flexDirection: "column",
     // position: "absolute",
     // top: "50%",
     // left: "50%",
