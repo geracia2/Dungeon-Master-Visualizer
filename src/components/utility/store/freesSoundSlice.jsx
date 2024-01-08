@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const storedSound = JSON.parse(localStorage.getItem("localSound"));
+
+
 const FreeSoundTrackSlice = createSlice({
   name: "FreeSoundTracks",
   initialState: [],

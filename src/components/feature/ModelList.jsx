@@ -40,6 +40,7 @@ export default function ModelList({ sfData }) {
   // modal vars
   const [modalInfo, setModalInfo] = useState({});
   const [open, setOpen] = React.useState(false);
+  
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -50,6 +51,7 @@ export default function ModelList({ sfData }) {
 
   const handleSet = (model) => {
     dispatch(Set_Model(model));
+    console.log(sfModel);
   };
 
   // const handleAdd = (model) => {
