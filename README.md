@@ -18,11 +18,16 @@ My goal was to simulate a professional work environment.
 - My desire for this project is to develop in a way that it gets me close to a professional work flow using branches in GitHub, referencing MUI’s component library layout and interactions.
 - MUI got me up and running in a responsive environment quicker than just starting from vanilla JS and CSS.
 
-**What I learned**
+**What I could imporve**
 
 - Spending time determining a user flow would have saved me several hours. I had the APIs I wanted to use but I was letting their interactions drive the flow of my app. 
 - Working with MUI; I did enjoy how quick it was to get smaller components ready and styled quickly however I found myself fighting the library when it came to larger complex comonents like the top app bar. About half way through the project I finally found the [pallet generator](https://m2.material.io/inline-tools/color/) and [theme creator](https://zenoo.github.io/mui-theme-creator/) which were increadably useful. 
-- In the future I will strive to work on pure functionality first till all my needs are met then pursue UX/UI. I found my self getting distracted troubleshooting and exploring styling more than finishing the functionality.  
+- In the future I will strive to work on pure functionality first till all my needs are met then pursue UX/UI. I found my self getting distracted troubleshooting and exploring styling more than finishing the functionality. 
+
+**I still want to implement the following:**
+- Api request pagination
+- A carousel of popular items on each page
+- further detail the sounds page
 
 **Class MVP requirements**
 
