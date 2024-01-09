@@ -13,7 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import AdbIcon from "@mui/icons-material/Adb";
 import Badge from "@mui/material/Badge";
-// import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import { Link } from "react-router-dom";
 //redux
@@ -41,12 +41,12 @@ export default function TopAppBar() {
     setAnchorElUser(null);
   };
   
-  // const StyledBadge = styled(Badge)(({ theme }) => ({
-  //   '& .MuiBadge-badge': {
-  //     right: '50%',
-  //     top: '98%',
-  //   },
-  // }));
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      right: '50%',
+      top: '98%',
+    },
+  }));
 
   return (
     <AppBar
@@ -92,26 +92,26 @@ export default function TopAppBar() {
               </Typography>
             </Link>
             <Link style={{ textDecoration: "none" }} to={"/fabLib"}>
-              {/* <StyledBadge
+              <StyledBadge
                 badgeContent={sfModel && ""}
                 color="secondary"
                 size="small"
-              > */}
+              >
                 <Typography sx={{ color: "primary.main", px: 6, py: 2 }}>
                   Models
                 </Typography>
-              {/* </StyledBadge> */}
+              </StyledBadge>
             </Link>
             <Link style={{ textDecoration: "none" }} to={"/soundLib"}>
-              {/* <StyledBadge
+              <StyledBadge
                 badgeContent={soundTrack.length}
                 color="secondary"
                 size="small"
-              > */}
+              >
                 <Typography sx={{ color: "primary.main", px: 6, py: 2 }}>
                   Sounds
                 </Typography>
-              {/* </StyledBadge> */}
+              </StyledBadge>
             </Link>
             <Link style={{ textDecoration: "none" }} to={"/scene"}>
               <Typography sx={{ color: "primary.main", px: 6, py: 2 }}>
@@ -157,22 +157,22 @@ export default function TopAppBar() {
             </Button>
           </Link>
           <Link style={{ textDecoration: "none" }} to={"/fabLib"}>
-            {/* <StyledBadge badgeContent={sfModel && ""} color="secondary"> */}
+            <StyledBadge badgeContent={sfModel && ""} color="secondary">
               <Button
                 sx={{ color: "primary.main", py: 8, px: 5, display: "block" }}
               >
                 Models
               </Button>
-            {/* </StyledBadge> */}
+            </StyledBadge>
           </Link>
           <Link style={{ textDecoration: "none" }} to={"/soundLib"}>
-            {/* <StyledBadge  badgeContent={soundTrack.length} color="secondary"> */}
+            <StyledBadge  badgeContent={soundTrack.length} color="secondary">
               <Button
                 sx={{ color: "primary.main", py: 8, px: 5, display: "block" }}
               >
                 Sounds
               </Button>
-            {/* </StyledBadge> */}
+            </StyledBadge>
           </Link>
           <Link style={{ textDecoration: "none" }} to={"/scene"}>
             <Button
