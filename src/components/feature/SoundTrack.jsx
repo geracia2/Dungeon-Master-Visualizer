@@ -1,8 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
-// mui audio player
-import { AudioCard } from "material-ui-player";
 // mui
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
