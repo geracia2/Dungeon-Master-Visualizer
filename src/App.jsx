@@ -15,14 +15,16 @@ import Nav from "./components/feature/Nav";
 export default function App() {
   return (
     <>
-      <Container
+      <Box
+      // maxWidth={false}
         sx={{
           backgroundImage: "url(/art/backgroundPaper.jpg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          width: "100vw",
+          // width: "100vw",
           height: "100vh",
+          // border:'solid red'
         }}
       >
         <TopAppBar />
@@ -35,7 +37,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
         </Routes>
         {/* <Footer /> */}
-      </Container>
+      </Box>
     </>
   );
 }
