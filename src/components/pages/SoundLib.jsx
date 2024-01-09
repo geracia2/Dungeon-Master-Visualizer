@@ -4,7 +4,8 @@ import SearchBar from "../feature/SearchBar";
 import SoundPresets from "../feature/SoundPresets";
 import SoundList from "../feature/SoundList";
 import SoundTrack from "../feature/SoundTrack";
-import Typography from '@mui/material/Typography'
+import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 
 export default function SoundLib() {
   // token for FreeSound
@@ -84,8 +85,18 @@ export default function SoundLib() {
         handleChange={(e) => setInput(e.target.value)}
       />
       <SoundPresets handlePreset={handlePreset} />
-      <SoundTrack fsTrack={fsTrack} />
-      <SoundList fsListData={fsListData} handleTrack={handleTrack} />
+      <Box
+        sx={{
+          p: 2,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <SoundList fsListData={fsListData} handleTrack={handleTrack} />
+        <SoundTrack fsTrack={fsTrack} />
+      </Box>
     </>
   );
 }

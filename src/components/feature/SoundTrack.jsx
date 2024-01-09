@@ -12,6 +12,7 @@ import AddIcon from "@mui/icons-material/Add";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { Remove_Track, Add_Track } from "../utility/store/freesSoundSlice";
+import { Box } from "@mui/material";
 
 export default function SoundTrack({ fsTrack }) {
   // enable dispatch, connect redux state
@@ -35,17 +36,16 @@ export default function SoundTrack({ fsTrack }) {
     <>
       {/* {console.log(soundTrack)} */}
       {fsTrack && (
-        <>
-          <Stack direction="row" spacing={1}>
-            <Chip label="Add to Scene" onClick={handleAdd} icon={<AddIcon />} />
-            <Chip
-              label="Remove From Scene"
-              onClick={handleDelete}
-              icon={<DeleteIcon />}
-              variant="outlined"
-            />
-          </Stack>
-          <Typography variant="h6" color="initial">
+        <Box
+          sx={{
+            width: "260px",
+            p: 4,
+            bgcolor: "secondary.dark",
+            borderRadius: "15px",
+          }}
+          spacing={4}
+        >
+          <Typography variant="body1">
             {fsTrack.name}
             <a
               href={`https://freesound.org/people/${fsTrack.username}/sounds/${fsTrack.id}/`}
@@ -56,28 +56,32 @@ export default function SoundTrack({ fsTrack }) {
               />
             </a>
           </Typography>
-          <p>{fsTrack.description}</p>
-          <>
+          <Typography gutterBottom variant="body2">
+            {fsTrack.description}
+          </Typography>
+          {/* <>
             tags:{" "}
             {fsTrack.tags.map((tag, i) => (
               <span key={i}>{tag}, </span>
             ))}
-          </>
-          <img src={fsTrack.images.waveform_bw_l} alt="Waveform" />
-          <audio controls loop src={fsTrack["previews"]["preview-hq-mp3"]}>
-            {/* audio doesn't update source with a render so apply it directly to element */}
-            <source
-              src={fsTrack["previews"]["preview-hq-mp3"]}
-              type="audio/mpeg"
+          </> */}
+          <img style={{maxWidth:'240px'}}src={fsTrack.images.waveform_bw_l} alt="Waveform" />
+          <Stack direction="column" spacing={2}>
+            <Chip label="Add to Scene" onClick={handleAdd} icon={<AddIcon />} />
+            <Chip
+              label="Remove From Scene"
+              onClick={handleDelete}
+              icon={<DeleteIcon />}
+              variant="outlined"
             />
-          </audio>
-          {/* <AudioCard
-                src={fsTrack["previews"]["preview-hq-mp3"]}
-                loop="true"
-                thickness="thin"
-                mute="true"
-              /> */}
-        </>
+          </Stack>
+          <audio
+            controls
+            loop
+            style={{ height: "30px", width: "240px", marginTop:'6px' }}
+            src={fsTrack["previews"]["preview-hq-mp3"]}
+          ></audio>
+        </Box>
       )}
     </>
   );
