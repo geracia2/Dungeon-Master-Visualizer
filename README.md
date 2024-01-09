@@ -2,7 +2,7 @@
 This is my second project for Per Scholas. The challenge was to utilize React and an API. I followed my inner nerd and went with SketchFab with FreeSound to make a "scene compositor" for D&D roleplayed.  
 
 **Demo**
-
+[Demo live on Netlify](https://master--euphonious-mooncake-53c4ad.netlify.app/)
 **How I worked on this project:**
 
 My goal was to simulate a professional work environment.
