@@ -15,16 +15,27 @@ import Nav from "./components/feature/Nav";
 export default function App() {
   return (
     <>
-      <TopAppBar />
-      {/* <Nav /> */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/fabLib" element={<FabLib />} />
-        <Route path="/soundLib" element={<SoundLib />} />
-        <Route path="/scene" element={<Scene />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-      {/* <Footer /> */}
+      <Container
+        sx={{
+          backgroundImage: "url(/art/backgroundPaper.jpg)",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <TopAppBar />
+        {/* <Nav /> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/fabLib" element={<FabLib />} />
+          <Route path="/soundLib" element={<SoundLib />} />
+          <Route path="/scene" element={<Scene />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        {/* <Footer /> */}
+      </Container>
     </>
   );
 }
