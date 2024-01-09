@@ -40,7 +40,7 @@ export default function Scene() {
       <Box
         sx={{
           p: 5,
-          height: "100vh",
+          // height: "100vh",
           display: "flex",
           justifyContent: "flex=start",
           alignItems: "center",
