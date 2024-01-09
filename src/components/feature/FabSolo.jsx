@@ -11,12 +11,15 @@ export default function FabSolo() {
   function iframeHeight() {
     var newHeight = $(window).height();
     var newWidth = $(window).width();
-    var buffer = 80; // space required for any other elements on the page
+    var buffer = 0; // space required for any other elements on the page
     var newIframeHeight = newHeight - buffer;
 
     $("iframe.fop")
-      .css("height", newIframeHeight * 0.98)
-      .css("width", newWidth * 0.98); //this will apply to all iFrames on the page, so you may want to make your jquery selector more specific.
+      .css("height", newIframeHeight * 0.7)
+      .css("width", 
+      // 500
+      newWidth * 0.75
+      ); //this will apply to all iFrames on the page, so you may want to make your jquery selector more specific.
   }
 
   // When DOM ready
@@ -57,8 +60,8 @@ export default function FabSolo() {
         accelerometer="true"
         // resize stuff:
         target="_parent"
-        width="100%"
-        height="100%"
+        // width="100%"
+        // height="100%"
         class="fop"
         frameBorder="0"
       />

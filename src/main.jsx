@@ -14,7 +14,7 @@ import { store } from "./components/utility/store/store.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Router>
-      <ThemeProvider theme={ThemeOptions}>
+      <ThemeProvider theme={ThemeOptions} >
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <App />

@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
 
 iframe {
   border-radius: 20px;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #afafaf;
 }

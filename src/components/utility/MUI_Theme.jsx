@@ -1,81 +1,48 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
+import darkScrollbar from "@mui/material/darkScrollbar";
 
 const OpenSans = "'Open Sans', sans-serif";
 const Roboto = "'Roboto', sans-serif";
 const Rubik = "'Rubik Mono One', monospace";
-
+const Noto = "'Noto Sans', sans-serif"
 
 export const ThemeOptions = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
     primary: {
-      main: '#D97B66',
+      main: "#d97b66",
     },
     secondary: {
-      main: '#66c4d9',
-    },
-    error: {
-      main: '#a7bdf9',
+      main: "#ce93d8",
     },
     background: {
-      default: '#014034',
+      default: "#282c34",
+      paper: "#3D3D3D",
     },
   },
   typography: {
-    fontFamily: OpenSans,
-    h1: {
-      fontFamily: Rubik,
-    },
+    fontFamily: Noto,
     button: {
-      fontFamily: Roboto,
-      fontSize: '1rem',
+      fontWeight: "600",
+      letterSpacing: "2px",
+      fontSize: "1.2rem",
+      // textTransform: 'capitalize',
     },
   },
   shape: {
     borderRadius: 15,
   },
   props: {
-    MuiButton: {
-      size: 'small',
-    },
-    MuiButtonGroup: {
-      size: 'small',
-    },
-    MuiCheckbox: {
-      size: 'small',
-    },
-    MuiFab: {
-      size: 'small',
-    },
-    MuiFormControl: {
-      margin: 'dense',
-      size: 'small',
-    },
-    MuiFormHelperText: {
-      margin: 'dense',
-    },
-    MuiIconButton: {
-      size: 'small',
-    },
-    MuiInputBase: {
-      margin: 'dense',
-    },
-    MuiInputLabel: {
-      margin: 'dense',
-    },
-    MuiRadio: {
-      size: 'small',
-    },
-    MuiSwitch: {
-      size: 'small',
-    },
-    MuiTextField: {
-      margin: 'dense',
-      size: 'small',
-    },
     MuiTooltip: {
       arrow: true,
     },
   },
   spacing: 3,
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: (themeParam) => ({
+        body: themeParam.palette.mode === "dark" ? darkScrollbar() : null,
+      }),
+    },
+  },
 });
